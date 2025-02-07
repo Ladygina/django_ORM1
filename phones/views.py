@@ -7,8 +7,20 @@ def index(request):
 
 
 def show_catalog(request):
-    phone = Phone.objects.all()
+
     template = 'catalog.html'
+    sort = request.GET.get('sort')
+
+    if sort == 'name':
+        phone = Phone.objects.order_by('name')
+    elif sort == 'min_price':
+        phone = Phone.objects.order_by('price')
+    elif sort == 'max_price':
+        phone = Phone.objects.order_by('-price')
+    else:
+        phone = Phone.objects.all()
+
+
     return render(request, template, {'phones':phone})
 
     #return HttpResponse(phone[c].slug for c in range(len(phone)))   #узнаем какие есть slug
