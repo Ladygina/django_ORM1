@@ -1,7 +1,7 @@
 name: CiCD action
 on:
   push:
-    branches: [master]
+    branches: [main]
 jobs:
   testing:
     runs-on: ubuntu-latest
